@@ -20,7 +20,7 @@
         class="register-card__footer-button"
         @click="$emit('next')"
       >
-        Continuar
+        {{ submitButtonText }}
       </AppButton>
     </div>
   </div>
@@ -42,6 +42,10 @@ defineProps({
   showPreviousButton: {
     type: Boolean,
     default: true,
+  },
+  submitButtonText: {
+    type: String,
+    default: 'Continuar',
   },
 });
 </script>
