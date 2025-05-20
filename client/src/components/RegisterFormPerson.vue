@@ -37,12 +37,12 @@
 
 <script setup>
 import useVuelidate from '@vuelidate/core';
-import { requiredValidator } from '@/helpers/validators';
+import { documentIdValidator, requiredValidator } from '@/helpers/validators';
 import AppInput from './AppInput.vue';
 import RegisterCard from './RegisterCard.vue';
 
 const emit = defineEmits(['next', 'previous']);
-defineProps({
+const props = defineProps({
   isCompany: {
     type: Boolean,
     required: true,
@@ -57,7 +57,10 @@ const phoneNumber = defineModel('phone-number', { type: String, required: true }
 // Validation rules
 const v$ = useVuelidate({
   name: { required: requiredValidator },
-  documentId: { required: requiredValidator },
+  documentId: {
+    required: requiredValidator,
+    documentIdValidator: documentIdValidator(props.isCompany),
+  },
   birthdate: { required: requiredValidator },
   phoneNumber: { required: requiredValidator },
 }, { name, documentId, birthdate, phoneNumber }, { $autoDirty: true });

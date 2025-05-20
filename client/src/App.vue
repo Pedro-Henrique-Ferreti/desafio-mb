@@ -44,12 +44,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { RegisterType } from './constants/register';
 import RegisterFormWelcome from './components/RegisterFormWelcome.vue';
 import RegisterFormPerson from './components/RegisterFormPerson.vue';
 import RegisterFormPassword from './components/RegisterFormPassword.vue';
 import RegisterFormReview from './components/RegisterFormReview.vue';
-import { RegisterType } from './constants/register';
 
 const FormSteps = {
   WELCOME: 1,
@@ -68,6 +68,10 @@ const form = ref({
   phoneNumber: '',
   password: '',
   registerType: RegisterType.PERSON,
+});
+
+watch(() => form.value.registerType, () => {
+  form.value.documentId = '';
 });
 
 // Submit form

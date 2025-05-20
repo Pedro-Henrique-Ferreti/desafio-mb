@@ -53,12 +53,12 @@
 
 <script setup>
 import useVuelidate from '@vuelidate/core';
-import { requiredValidator } from '@/helpers/validators';
+import { documentIdValidator, requiredValidator } from '@/helpers/validators';
 import AppInput from './AppInput.vue';
 import RegisterCard from './RegisterCard.vue';
 
 const emit = defineEmits(['submit-form', 'previous']);
-defineProps({
+const props = defineProps({
   isCompany: {
     type: Boolean,
     required: true,
@@ -80,7 +80,10 @@ const password = defineModel('password', { type: String, required: true });
 const v$ = useVuelidate({
   email: { required: requiredValidator },
   name: { required: requiredValidator },
-  documentId: { required: requiredValidator },
+  documentId: {
+    required: requiredValidator,
+    documentIdValidator: documentIdValidator(props.isCompany),
+  },
   birthdate: { required: requiredValidator },
   phoneNumber: { required: requiredValidator },
   password: { required: requiredValidator },
