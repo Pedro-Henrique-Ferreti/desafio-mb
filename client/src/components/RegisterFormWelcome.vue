@@ -12,6 +12,18 @@
       :dirty="v$.email.$dirty"
       :error-message="v$.email.$errors[0]?.$message"
     />
+    <div class="radio-wrapper">
+      <AppRadioInput
+        v-model="registerType"
+        text="Pessoa física"
+        :value="RegisterType.PERSON"
+      />
+      <AppRadioInput
+        v-model="registerType"
+        text="Pessoa jurídica"
+        :value="RegisterType.COMPANY"
+      />
+    </div>
   </RegisterCard>
 </template>
 
@@ -20,10 +32,13 @@ import useVuelidate from '@vuelidate/core';
 import { emailValidator, requiredValidator } from '@/helpers/validators';
 import AppInput from './AppInput.vue';
 import RegisterCard from './RegisterCard.vue';
+import AppRadioInput from './AppRadioInput.vue';
+import { RegisterType } from '@/constants/register';
 
 const emit = defineEmits(['next']);
 
 const email = defineModel('email', { type: String, required: true });
+const registerType = defineModel('register-type', { type: String, required: true });
 
 // Validation rules
 const v$ = useVuelidate({
@@ -39,3 +54,10 @@ async function validateForm() {
   emit('next');
 }
 </script>
+
+<style scoped>
+.radio-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+</style>

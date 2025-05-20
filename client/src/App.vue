@@ -7,6 +7,7 @@
       <RegisterFormWelcome
         v-if="activeFormStep === FormSteps.WELCOME"
         v-model:email="form.email"
+        v-model:register-type="form.registerType"
         @next="activeFormStep = FormSteps.PERSON"
       />
       <RegisterFormPerson
@@ -15,7 +16,7 @@
         v-model:document-id="form.documentId"
         v-model:birthdate="form.birthdate"
         v-model:phone-number="form.phoneNumber"
-        :is-company="form.isCompany"
+        :is-company="form.registerType === RegisterType.COMPANY"
         @previous="activeFormStep = FormSteps.WELCOME"
         @next="activeFormStep = FormSteps.PASSWORD"
       />
@@ -33,7 +34,7 @@
         v-model:birthdate="form.birthdate"
         v-model:phone-number="form.phoneNumber"
         v-model:password="form.password"
-        :is-company="form.isCompany"
+        :is-company="form.registerType === RegisterType.COMPANY"
         @previous="activeFormStep = FormSteps.PASSWORD"
       />
     </form>
@@ -46,6 +47,7 @@ import RegisterFormWelcome from './components/RegisterFormWelcome.vue';
 import RegisterFormPerson from './components/RegisterFormPerson.vue';
 import RegisterFormPassword from './components/RegisterFormPassword.vue';
 import RegisterFormReview from './components/RegisterFormReview.vue';
+import { RegisterType } from './constants/register';
 
 const FormSteps = {
   WELCOME: 1,
@@ -63,12 +65,12 @@ const form = ref({
   birthdate: '',
   phoneNumber: '',
   password: '',
-  isCompany: false,
+  registerType: '',
 });
 </script>
 
 <style lang="scss" scoped>
 .form {
-  margin-top: 3rem;
+  margin: 3rem 0;
 }
 </style>
