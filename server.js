@@ -13,9 +13,15 @@ app.get('/registration', (req, res) => {
 })
 
 app.post('/registration', (req, res) => {
-  console.log(req.body)
-
-  if (!req.body) {
+  if (
+    !req.body?.email
+    || !req.body?.name
+    || !req.body?.documentId
+    || !req.body?.birthdate
+    || !req.body?.phoneNumber
+    || !req.body?.password
+    || !req.body?.registerType
+  ) {
     return res.sendStatus(400)
   }
 
