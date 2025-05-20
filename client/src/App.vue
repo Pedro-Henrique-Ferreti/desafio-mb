@@ -36,6 +36,7 @@
         v-model:password="form.password"
         :is-company="form.registerType === RegisterType.COMPANY"
         @previous="activeFormStep = FormSteps.PASSWORD"
+        @submit-form="submitForm"
       />
     </form>
   </main>
@@ -65,12 +66,33 @@ const form = ref({
   birthdate: '',
   phoneNumber: '',
   password: '',
-  registerType: '',
+  registerType: RegisterType.PERSON,
 });
+
+// Submit form
+const isLoading = ref(false);
+
+async function submitForm() {
+  isLoading.value = true;
+
+  try {
+    await fetch('http://localhost:3000/registration', {
+      method: 'POST',
+      body: JSON.stringify(form.value),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .form {
-  margin: 3rem 0;
+  padding: 3rem 0;
 }
 </style>
