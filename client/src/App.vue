@@ -34,6 +34,7 @@
         v-model:birthdate="form.birthdate"
         v-model:phone-number="form.phoneNumber"
         v-model:password="form.password"
+        :is-loading="isLoading"
         :is-company="form.registerType === RegisterType.COMPANY"
         @previous="activeFormStep = FormSteps.PASSWORD"
         @submit-form="submitForm"

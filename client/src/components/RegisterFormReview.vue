@@ -3,6 +3,7 @@
     title="Revise suas informações"
     submit-button-text="Cadastrar"
     :form-step="4"
+    :is-loading="isLoading"
     @next="validateForm"
     @previous="$emit('previous')"
   >
@@ -61,6 +62,10 @@ defineProps({
   isCompany: {
     type: Boolean,
     required: true,
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
 });
 

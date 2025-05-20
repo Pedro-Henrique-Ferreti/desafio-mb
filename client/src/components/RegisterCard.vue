@@ -18,6 +18,7 @@
       </AppButton>
       <AppButton
         class="register-card__footer-button"
+        :is-loading="isLoading"
         @click="$emit('next')"
       >
         {{ submitButtonText }}
@@ -46,6 +47,10 @@ defineProps({
   submitButtonText: {
     type: String,
     default: 'Continuar',
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

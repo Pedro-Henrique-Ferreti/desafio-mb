@@ -11,16 +11,16 @@
       <div class="button__content">
         <slot />
       </div>
-      <!-- <IconSpinner
+      <IconSpinner
         class="button__icon-loader"
-        size="24"
-      /> -->
+        size="20"
+      />
     </div>
   </button>
 </template>
 
 <script setup>
-// import IconSpinner from './IconSpinner.vue';
+import IconSpinner from './IconSpinner.vue';
 
 const emit = defineEmits(['click']);
 const props = defineProps({
@@ -55,7 +55,7 @@ function handleClick(event) {
 <style lang="scss" scoped>
 .button {
   --height: 2.5rem;
-  // --loader-indicator-color: #{$color--text-strong};
+  --loader-indicator-color: #{$color--white};
 
   &[data-loading="true"] {
     cursor: default;
@@ -112,6 +112,7 @@ function handleClick(event) {
     --hover-bg-color: #{$color--primary};
   }
   &[data-outline="true"] {
+    --loader-indicator-color: #{$color--primary};
     --text-color: #{$color--primary};
     --border-color: #{$color--primary};
     --bg-color: #{$color--white};
