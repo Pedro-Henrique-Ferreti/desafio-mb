@@ -93,6 +93,8 @@ async function submitForm() {
 
 <style lang="scss" scoped>
 .form {
+  max-width: 20rem;
   padding: 3rem 0;
+  margin: auto;
 }
 </style>
