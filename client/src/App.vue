@@ -89,7 +89,7 @@ async function submitForm() {
       },
     });
   } catch (error) {
-    console.error(error);
+    alert(error.message);
   } finally {
     isLoading.value = false;
   }
