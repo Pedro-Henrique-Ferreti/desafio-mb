@@ -45,11 +45,14 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useToast } from 'vue-toastification';
 import { RegisterType } from './constants/register';
 import RegisterFormWelcome from './components/RegisterFormWelcome.vue';
 import RegisterFormPerson from './components/RegisterFormPerson.vue';
 import RegisterFormPassword from './components/RegisterFormPassword.vue';
 import RegisterFormReview from './components/RegisterFormReview.vue';
+
+const toast = useToast();
 
 const FormSteps = {
   WELCOME: 1,
@@ -88,8 +91,10 @@ async function submitForm() {
         'Content-Type': 'application/json',
       },
     });
-  } catch (error) {
-    alert(error.message);
+
+    toast.success('Cadastro realizado com sucesso!');
+  } catch (error) { // eslint-disable-line
+    toast.error('Falha ao realizar o cadastro. Por favor, tente novamente.');
   } finally {
     isLoading.value = false;
   }

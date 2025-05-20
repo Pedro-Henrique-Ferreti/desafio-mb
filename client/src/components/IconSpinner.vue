@@ -6,9 +6,23 @@
     aria-valuemax="100"
     role="progressbar"
   >
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle class="spinner__track" cx="50" cy="50" r="45" />
-      <circle class="spinner__indicator" cx="50" cy="50" r="45" stroke-dashoffset="280" />
+    <svg
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        class="spinner__track"
+        cx="50"
+        cy="50"
+        r="45"
+      />
+      <circle
+        class="spinner__indicator"
+        cx="50"
+        cy="50"
+        r="45"
+        stroke-dashoffset="280"
+      />
     </svg>
   </div>
 </template>
