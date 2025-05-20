@@ -1,30 +1,30 @@
 <template>
   <textarea
     v-if="type === 'textarea'"
+    :id="id"
     v-model="inputValue"
     class="base-input base-input--textarea"
-    :id="id"
     :disabled="disabled"
     @change="handleChange($event.target.value)"
   />
   <input
     v-else-if="mask"
-    class="base-input"
     :id="id"
     ref="input"
+    class="base-input"
     type="text"
     :disabled="disabled"
     @blur="handleChange(imaskInstance?.unmaskedValue || '')"
-  />
+  >
   <input
     v-else
+    :id="id"
     v-model="inputValue"
     class="base-input"
-    :id="id"
     :type="type"
     :disabled="disabled"
     @change="handleChange($event.target.value)"
-  />
+  >
 </template>
 
 <script setup>

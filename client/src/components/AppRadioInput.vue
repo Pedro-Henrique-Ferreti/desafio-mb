@@ -5,13 +5,13 @@
       :for="elementId"
     >
       <input
+        :id="elementId"
         v-model="inputValue"
         class="app-radio__input"
         type="radio"
         :value="value"
-        :id="elementId"
         :disabled="disabled"
-      />
+      >
       <IconRadioControl
         class="app-radio__control-icon"
         :checked="isChecked"
